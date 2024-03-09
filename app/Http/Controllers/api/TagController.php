@@ -124,9 +124,8 @@ class TagController extends Controller
         $tag=Tag::find($id);
         if($tag==null){
             return response()->json(["error" => "Tag não encontrada."], 404);
-        }else{
-            $tag->delete();
-            return response()->json("",204);
         }
+        $tag->delete();
+        return response()->json("",204);
     }
 }
