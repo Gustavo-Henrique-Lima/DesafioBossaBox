@@ -70,7 +70,7 @@ class ToolController extends Controller
             $tools->makeHidden(["created_at", "updated_at"]);
         }
 
-        Log::info("Tools returned with sucess ", ['tool' => $tools->toArray()]);
+        Log::info("Tools returned with sucess ", ["tool" => $tools->toArray()]);
         return response()->json($tools, 200);
     }
 
@@ -129,8 +129,8 @@ class ToolController extends Controller
         try {
             $data = $request->all();
 
-            $existingTags = Tag::whereIn('name', $data['tags'])->pluck('name')->toArray();
-            $missingTags = array_diff($data['tags'], $existingTags);
+            $existingTags = Tag::whereIn("name", $data["tags"])->pluck("name")->toArray();
+            $missingTags = array_diff($data["tags"], $existingTags);
 
             if (!empty($missingTags)) {
                 throw new ModelNotFoundException("As tags a seguir não existem: " . implode(", ", $missingTags) . ", por favor use as tags já cadastradas.");
@@ -143,7 +143,7 @@ class ToolController extends Controller
             ]);
 
             foreach ($data["tags"] as $tagName) {
-                $tag = Tag::where('name', $tagName)->first();
+                $tag = Tag::where("name", $tagName)->first();
                 $tool->tags()->attach($tag->id);
             }
 
@@ -152,7 +152,7 @@ class ToolController extends Controller
                 $tag->makeHidden(["created_at", "updated_at", "pivot"]);
             });
 
-            Log::info("Tool created with sucess ", ['tool' => $tool->toArray()]);
+            Log::info("Tool created with sucess ", ["tool" => $tool->toArray()]);
             return response()->json($tool, 201);
         } catch (\InvalidArgumentException $e) {
             Log::error("Erro ao tentar cadastrar uma Tool: Erro nos atributos.");

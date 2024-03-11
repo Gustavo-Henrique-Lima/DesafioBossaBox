@@ -11,9 +11,9 @@ class Tag extends Model
      *
      * @var string
      */
-    protected $table = 'tb_tags';
+    protected $table = "tb_tags";
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = "id";
 
     /**
      * Indicates if the model's ID is auto-incrementing.
@@ -23,8 +23,8 @@ class Tag extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'id',
-        'name',
+        "id",
+        "name",
     ];
 
     // Adicione a validação no momento da criação ou atualização
