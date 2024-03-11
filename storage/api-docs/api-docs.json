@@ -13,8 +13,8 @@
                 "tags": [
                     "Tag"
                 ],
-                "summary": "Get all Tag",
-                "description": "This endpoint return a collection of Tag.",
+                "summary": "Get all Tags",
+                "description": "This endpoint returns a collection of Tags.",
                 "operationId": "9a1e974f6a3e825e250969bb8c1a005c",
                 "responses": {
                     "200": {
@@ -58,7 +58,7 @@
                     "Tag"
                 ],
                 "summary": "Save a new Tag",
-                "description": "This endpoint save a new Tag at database.",
+                "description": "This endpoint saves a new Tag in the database.",
                 "operationId": "6c57d0bfce57c15ea9cd8d1e3224aacf",
                 "requestBody": {
                     "content": {
@@ -146,7 +146,7 @@
                     "Tag"
                 ],
                 "summary": "Delete Tag",
-                "description": "This endpoint delete a Tag from database.",
+                "description": "This endpoint deletes a Tag from the database.",
                 "operationId": "b9bc6aaf2cade633e8633d4cdc68526b",
                 "parameters": [
                     {
@@ -173,6 +173,227 @@
                                         "error": {
                                             "type": "string",
                                             "example": "Tag não encontrada."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tools": {
+            "get": {
+                "tags": [
+                    "Tool"
+                ],
+                "summary": "Get all Tools",
+                "description": "This endpoint returns a collection of Tools filtered by Tag.",
+                "operationId": "adf133ed57792996d46fca967a06f518",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": "1"
+                                                    },
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "Value 1"
+                                                    },
+                                                    "link": {
+                                                        "type": "string",
+                                                        "example": "www.value1.com"
+                                                    },
+                                                    "description": {
+                                                        "type": "string",
+                                                        "example": "Value 1 is a Tool very powerful"
+                                                    },
+                                                    "tags": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "name": {
+                                                                    "type": "string",
+                                                                    "example": "Tag"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Tool"
+                ],
+                "summary": "Save a new Tool",
+                "description": "This endpoint saves a new Tool in the database.",
+                "operationId": "02add7a4c738fe36d99a1290123bcfc8",
+                "requestBody": {
+                    "content": {
+                        "json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "link",
+                                    "description",
+                                    "tags"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Value 1"
+                                    },
+                                    "link": {
+                                        "type": "string",
+                                        "example": "www.value1.com"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Value 1 is a powerful tool"
+                                    },
+                                    "tags": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Tag"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "title": {
+                                            "type": "string",
+                                            "example": "Value 1"
+                                        },
+                                        "link": {
+                                            "type": "string",
+                                            "example": "www.value1.com"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Value 1 is a powerful tool"
+                                        },
+                                        "tags": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "example": "Tag1"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "O atibuto da ferramenta deve ter mais de 3 caracteres e não pode ser nulo."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "As tags a seguir não existem: value 1, value 2, por favor use as tags já cadastradas."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tools/{id}": {
+            "delete": {
+                "tags": [
+                    "Tool"
+                ],
+                "summary": "Delete Tool",
+                "description": "This endpoint delete a Tool from the database.",
+                "operationId": "b07ffff264ad7e84a12db9a55462693b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the resource",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ferramenta não encontrada."
                                         }
                                     },
                                     "type": "object"

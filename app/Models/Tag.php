@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
@@ -16,13 +15,13 @@ class Tag extends Model
 
     protected $primaryKey = 'id';
 
-      /**
+    /**
      * Indicates if the model's ID is auto-incrementing.
      *
      * @var bool
      */
     public $incrementing = false;
-   
+
     protected $fillable = [
         'id',
         'name',
@@ -41,7 +40,7 @@ class Tag extends Model
     // Método para validar o nome
     private static function validateName($name)
     {
-        if (is_null($name) || strlen($name) <=3) {
+        if (is_null($name) || strlen($name) <= 3) {
             throw new \InvalidArgumentException("O nome da categoria deve ter mais de 3 caracteres e não pode ser nulo.");
         }
     }
