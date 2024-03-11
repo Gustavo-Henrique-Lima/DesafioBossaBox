@@ -13,7 +13,6 @@ class ToolSeeder extends Seeder
      */
     public function run(): void
     {
-        // Ferramenta 1
         $tool1 = Tool::create([
             "title" => "Notion",
             "link" => "https://notion.so",
@@ -23,7 +22,6 @@ class ToolSeeder extends Seeder
         $tags1 = ["organization", "planning", "collaboration", "writing", "calendar"];
         $this->attachTagsToTool($tool1, $tags1);
 
-        // Ferramenta 2
         $tool2 = Tool::create([
             "title" => "json-server",
             "link" => "https://github.com/typicode/json-server",
@@ -33,7 +31,6 @@ class ToolSeeder extends Seeder
         $tags2 = ["api", "json", "schema", "node", "github", "rest"];
         $this->attachTagsToTool($tool2, $tags2);
 
-        // Ferramenta 3
         $tool3 = Tool::create([
             "title" => "fastify",
             "link" => "https://www.fastify.io/",

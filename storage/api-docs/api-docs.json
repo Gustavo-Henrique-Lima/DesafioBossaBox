@@ -182,6 +182,227 @@
                     }
                 }
             }
+        },
+        "/api/tools": {
+            "get": {
+                "tags": [
+                    "Tool"
+                ],
+                "summary": "Get all Tools",
+                "description": "This endpoint returns a collection of Tools filtered by Tag.",
+                "operationId": "adf133ed57792996d46fca967a06f518",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": "1"
+                                                    },
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "Value 1"
+                                                    },
+                                                    "link": {
+                                                        "type": "string",
+                                                        "example": "www.value1.com"
+                                                    },
+                                                    "description": {
+                                                        "type": "string",
+                                                        "example": "Value 1 is a Tool very powerful"
+                                                    },
+                                                    "tags": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "name": {
+                                                                    "type": "string",
+                                                                    "example": "Tag"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Tool"
+                ],
+                "summary": "Save a new Tool",
+                "description": "This endpoint saves a new Tool in the database.",
+                "operationId": "02add7a4c738fe36d99a1290123bcfc8",
+                "requestBody": {
+                    "content": {
+                        "json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "link",
+                                    "description",
+                                    "tags"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Value 1"
+                                    },
+                                    "link": {
+                                        "type": "string",
+                                        "example": "www.value1.com"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Value 1 is a powerful tool"
+                                    },
+                                    "tags": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Tag"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "title": {
+                                            "type": "string",
+                                            "example": "Value 1"
+                                        },
+                                        "link": {
+                                            "type": "string",
+                                            "example": "www.value1.com"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Value 1 is a powerful tool"
+                                        },
+                                        "tags": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "example": "Tag1"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "O atibuto da ferramenta deve ter mais de 3 caracteres e não pode ser nulo."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "As tags a seguir não existem: value 1, value 2, por favor use as tags já cadastradas."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tools/{id}": {
+            "delete": {
+                "tags": [
+                    "Tool"
+                ],
+                "summary": "Delete Tool",
+                "description": "This endpoint delete a Tool from the database.",
+                "operationId": "b07ffff264ad7e84a12db9a55462693b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the resource",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ferramenta não encontrada."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
