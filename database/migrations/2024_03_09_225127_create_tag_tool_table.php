@@ -14,7 +14,9 @@ class CreateTagToolTable extends Migration
             $table->unsignedBigInteger("tool_id");
             $table->timestamps();
 
-            $table->foreign("tag_id")->references("id")->on("tb_tags");
+            $table->foreign('tag_id')
+                ->references('id')->on('tb_tags')
+                ->onDelete('cascade');
             $table->foreign("tool_id")->references("id")->on("tb_tools");
         });
     }

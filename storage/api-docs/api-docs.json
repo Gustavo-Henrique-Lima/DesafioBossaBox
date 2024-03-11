@@ -13,8 +13,8 @@
                 "tags": [
                     "Tag"
                 ],
-                "summary": "Get all Tag",
-                "description": "This endpoint return a collection of Tag.",
+                "summary": "Get all Tags",
+                "description": "This endpoint returns a collection of Tags.",
                 "operationId": "9a1e974f6a3e825e250969bb8c1a005c",
                 "responses": {
                     "200": {
@@ -58,7 +58,7 @@
                     "Tag"
                 ],
                 "summary": "Save a new Tag",
-                "description": "This endpoint save a new Tag at database.",
+                "description": "This endpoint saves a new Tag in the database.",
                 "operationId": "6c57d0bfce57c15ea9cd8d1e3224aacf",
                 "requestBody": {
                     "content": {
@@ -146,7 +146,7 @@
                     "Tag"
                 ],
                 "summary": "Delete Tag",
-                "description": "This endpoint delete a Tag from database.",
+                "description": "This endpoint deletes a Tag from the database.",
                 "operationId": "b9bc6aaf2cade633e8633d4cdc68526b",
                 "parameters": [
                     {

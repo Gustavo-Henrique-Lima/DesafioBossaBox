@@ -155,13 +155,13 @@ class ToolController extends Controller
             Log::info("Tool created with sucess ", ['tool' => $tool->toArray()]);
             return response()->json($tool, 201);
         } catch (\InvalidArgumentException $e) {
-            Log::error("Erro ao tentar cadastrar uma ferramenta: Erro nos atributos.");
+            Log::error("Erro ao tentar cadastrar uma Tool: Erro nos atributos.");
             return response()->json(["error" => $e->getMessage()], 422);
         } catch (\Illuminate\Database\QueryException  $e) {
-            Log::error("Erro ao tentar cadastrar uma ferramenta: Já existe uma ferramenta cadastrada com esse nome.");
-            return response()->json(["error" => "Já existe uma ferramenta cadastrada com esse nome."], 409);
+            Log::error("Erro ao tentar cadastrar uma Tool: Já existe uma Tool cadastrada com esse nome.");
+            return response()->json(["error" => "Já existe uma Tool cadastrada com esse nome."], 409);
         } catch (ModelNotFoundException $e) {
-            Log::error("Erro ao tentar cadastrar uma ferramenta: A(s) tag(s) não existe(m)");
+            Log::error("Erro ao tentar cadastrar uma Tool: A(s) tag(s) não existe(m)");
             return response()->json(["error" => $e->getMessage()], 404);
         }
     }
@@ -199,7 +199,7 @@ class ToolController extends Controller
     {
         $tool = Tool::find($id);
         if ($tool == null) {
-            Log::error("Erro ao tentar deletar uma ferramenta: Nenhuma ferramenta com o id " . $id . " foi encontrada.");
+            Log::error("Erro ao tentar deletar uma Tool: Nenhuma Tool com o id " . $id . " foi encontrada.");
             return response()->json(["error" => "Ferramenta não encontrada."], 404);
         }
         $tool->tags()->detach();
