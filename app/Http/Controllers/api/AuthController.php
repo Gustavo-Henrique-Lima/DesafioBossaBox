@@ -21,6 +21,40 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
+    /**
+     * @OA\Post(
+     *     tags={"Auth"},
+     *     summary="Login",
+     *     description="This endpoint get and authentic a user.",
+     *     path="/api/auth/login",
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="json",
+     *             @OA\Schema(
+     *                 required={"email","password"},
+     *                 @OA\Property(property="email", type="string", example="value@gmail.com"),
+     *                 @OA\Property(property="password", type="string", example="value123"),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Ok",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="access_token", type="string", example="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMT"),
+     *             @OA\Property(property="token_type", type="string", example="bearer"),
+     *             @OA\Property(property="expires_in", type="int", example=3600),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="Usuário e/ou senha inválidos"),
+     *         )
+     *     )
+     * )
+     */
     public function login()
     {
         $credentials = request(["email", "password"]);
@@ -30,38 +64,6 @@ class AuthController extends Controller
         }
 
         return $this->respondWithToken($token);
-    }
-
-    /**
-     * Get the authenticated User.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function me()
-    {
-        return response()->json(auth()->user());
-    }
-
-    /**
-     * Log the user out (Invalidate the token).
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function logout()
-    {
-        auth()->logout();
-
-        return response()->json(["message" => "Successfully logged out"]);
-    }
-
-    /**
-     * Refresh a token.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function refresh()
-    {
-        return $this->respondWithToken(auth()->refresh());
     }
 
     /**
