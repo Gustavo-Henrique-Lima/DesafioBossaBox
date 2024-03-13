@@ -35,7 +35,7 @@ class TagController extends Controller
     {
         $tags = Tag::all();
         $tags->makeHidden(["created_at", "updated_at"]);
-        Log::info("Tools returned with sucess ", ['tags' => $tags->toArray()]);
+        Log::info("Tools returned with sucess ", ["tags" => $tags->toArray()]);
         return response()->json($tags, 200);
     }
 
@@ -87,7 +87,7 @@ class TagController extends Controller
             $tag = Tag::create($data);
             $tag->makeHidden(["created_at", "updated_at"]);
 
-            Log::info("Tag created with sucess ", ['tag' => $tag->toArray()]);
+            Log::info("Tag created with sucess ", ["tag" => $tag->toArray()]);
             return response()->json($tag, 201);
         } catch (\InvalidArgumentException $e) {
             Log::error("Erro ao tentar cadastrar uma tag: Erro nos atributos.");

@@ -2,17 +2,25 @@
 
 use App\Http\Controllers\api\TagController;
 use App\Http\Controllers\api\ToolController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\api\AuthController;
 use Illuminate\Support\Facades\Route;
 
+
+Route::prefix("auth")->group(function () {
+    Route::post("login", [AuthController::class, "login"]);
+    Route::post("logout", [AuthController::class, "logout"]);
+});
+
 Route::get("tags", [TagController::class, "getAllTags"]);
-Route::post("tags", [TagController::class, "store"]);
-Route::delete("tags/{id}", [TagController::class, "delete"]);
-
 Route::get("tools", [ToolController::class, "getTools"]);
-Route::post("tools", [ToolController::class, "store"]);
-Route::delete("tools/{id}", [ToolController::class, "delete"]);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(["middleware" => ["protected"]], function () {
+    Route::prefix("tags")->group(function () {
+        Route::post("/", [TagController::class, "store"]);
+        Route::delete("/{id}", [TagController::class, "delete"]);
+    });
+    Route::prefix("tools")->group(function () {
+        Route::post("/", [ToolController::class, "store"]);
+        Route::delete("/{id}", [ToolController::class, "delete"]);
+    });
 });
