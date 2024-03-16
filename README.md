@@ -107,8 +107,8 @@ A API VUTTR é um simples repositório para gerenciar ferramentas com seus respe
 Agora o container está rodando e monitorando a porta 8000
 
 ## Testes 
-    A aplicação conta com alguns testes unitários e de integração que são responsáveis por verificar e validar a funcionalidades 
-    do sistema.
+    A aplicação conta com alguns testes unitários e de integração que são responsáveis por verificar 
+    e validar as funcionalidades do sistema.
     
         
 ## License
