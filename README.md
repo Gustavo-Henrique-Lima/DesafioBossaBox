@@ -7,60 +7,109 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## VUTTR API (Very Useful Tools to Remember)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+A API VUTTR é um simples repositório para gerenciar ferramentas com seus respectivos nomes, links, descrições e tags. Foi desenvolvida utilizando o framework Laravel e o banco de dados MySQL.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Como Rodar o Projeto
+### Pré-requisitos
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- PHP 8.0 ou superior
+- Composer 2.0 ou superior
 
-## Learning Laravel
+### Passos
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. **Clonar o Repositório:**
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+   ```bash
+   git clone git@github.com:Gustavo-Henrique-Lima/DesafioBossaBox.git
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. **Navegue até o diretório do projeto:**
 
-## Laravel Sponsors
+    ```bash
+    cd DesafioBossaBox
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. **Instale as dependências:**
 
-### Premium Partners
+    ```bash
+    composer install
+4. **Crie arquivo .env:**
+    ```bash
+    cp .env.example .env
+5. **Atualize as variáveis de ambiente do arquivo .env:**  
+    ### As variáveis necessárias para rodar o projeto estão nas linhas 12 a 17 do arquivo .env.
+    ```bash
+    DB_CONNECTION=seuSgbd
+    DB_HOST=127.0.0.1
+    DB_PORT=3306 (Porta padrão de alguns SGBDs, verifique o seu e veja se é necessário alterar algo)
+    DB_DATABASE=suaBaseDados
+    DB_USERNAME=seuUsuario
+    DB_PASSWORD=senhaDoSeuUsuario    
+    
+4. **Inicie o servidor de desenvolvimento:**
+    ```bash
+   php artisan serve
+    
+### Agora o servidor está rodando na porta 8000
+## Funcionalidades
+   ### Tag
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    Listar Tags:
+      Endpoint para recuperar a lista completa de tags.
 
-## Contributing
+    Salvar Tag:
+      Endpoint para inserir uma nova Tag no banco de dados.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    Deletar Tag:
+      Endpoint para deletar uma Tag do banco de dados.
+      
+  ### Tool
 
-## Code of Conduct
+    Listar Tools:
+      Endpoint para recuperar a lista completa de tools.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    Salvar Tool:
+      Endpoint para inserir uma nova Tool no banco de dados.
 
-## Security Vulnerabilities
+    Deletar Tool:
+      Endpoint para deletar uma Tool do banco de dados.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+  ### Login
+      Realizar login:
+        Endpoint para realizar login do usuário.
+        
+## Documentação
 
+  O projeto inclui documentação detalhada para facilitar o entendimento e a interação com a aplicação.
+  A seguir estão os recursos de documentação disponíveis.
+
+  ### Swagger
+
+   A API é documentada usando o Swagger, que fornece uma interface interativa para explorar os endpoints 
+  da aplicação.
+  ### Acesso ao Swagger:
+  **Com o projeto rodando**
+  
+  O Swagger pode ser acessado através do link: [Swagger UI](http://localhost:8000/api/documentation#/).
+  
+  A interface do Swagger oferece uma visão interativa dos endpoints, permitindo testar as operações
+  diretamente na documentação.
+
+## Conteinerização 
+### Para criar uma imagem do projeto  
+ O projeto já conta com o arquivo Dockerfile necessário para criar uma imagem e em seguida rodar um container, para criar a imagem entre na pasta raiz do projeto, garante que o docker desktop esteja rodando na sua máquina e digite o seguinte comando:  
+        
+    docker build -t bossaboxchallenge:v1.0 .
+### Container
+ Com a imagem criada levante um container:
+     
+    docker run -p 8000:8000 bossaboxchallenge:v1.0
+Agora o container está rodando e monitorando a porta 8000
+
+## Testes 
+    A aplicação conta com alguns testes unitários e de integração que são responsáveis por verificar 
+    e validar as funcionalidades do sistema.
+    
+        
 ## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Este projeto está licenciado sob a licença [MIT license](https://opensource.org/licenses/MIT).
