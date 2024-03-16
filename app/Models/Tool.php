@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Tool extends Model
 {
+    use HasFactory;
     /**
      * The table associated with the model.
      *
@@ -55,4 +57,5 @@ class Tool extends Model
             static::$errors[] = "O(A) " . $fieldName . " da ferramenta deve ter mais de 3 caracteres e não pode ser nulo.";
         }
     }
+    
 }

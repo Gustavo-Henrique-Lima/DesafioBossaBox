@@ -112,7 +112,7 @@ class ToolController extends Controller
      *         response=422,
      *         description="Unprocessable Content",
      *         @OA\JsonContent(
-     *             @OA\Property(property="error", type="string", example="O atibuto da ferramenta deve ter mais de 3 caracteres e não pode ser nulo."),
+     *             @OA\Property(property="error", type="string", example="O atributo da ferramenta deve ter mais de 3 caracteres e não pode ser nulo."),
      *         )
      *     ),
      *     @OA\Response(
